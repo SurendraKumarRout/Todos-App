@@ -1,47 +1,45 @@
-// import React from 'react'
-// import { useState } from 'react';
+import { useState } from "react";
 
-// import { addTodo } from "../redux/Actions";
-
-
-// const Todos = () =>
-// {
-    
-//   const [ todos, setTodos ] = useState( "" );
- 
-
-//     const handleChange = ( e ) =>
-//     {
-//         setTodos( e.target.value );  //e.target.value = input value
-//     }
-//     console.log(todos);
-//   return (
-//     <div>
-//       <h1>Aarya's Todos App</h1>
-//       <input
-//         type="text"
-//         placeholder="Enter your task"
-//         onChange={(e) => handleChange(e)}    //Whenever something changes in the input, e got updated, then e value pass through the function
-//         ></input>
-//       <button onClick={ () => dispatch(addTodo(todos))}>ADD</button>
-//     </div>
-//   );
-// }
-
-// export default Todos
-
-
-
-
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, removeTodo } from "./todosSlice";
 
 function Todos() {
+  const [todo, setTodo] = useState("");
+
+  const todos = useSelector((state) => state.myTodoApp.todos);
+  const dispatch = useDispatch();
   return (
-      <>
-          <h1>Aarya's Todo App</h1>
-          <input />
-          <button>ADD</button>
-      </>
-  )
+    <>
+      <h1>Aarya's Todo App</h1>
+      <input
+        onChange={(e) => {
+          setTodo(e.target.value);
+        }}
+      />
+      <button
+        onClick={() =>
+          dispatch(
+            addTodo({
+              id: Math.floor(Math.random() * 1000),
+              item: todo,
+              status: false,
+            })
+          )
+        }
+      >
+        ADD
+      </button>
+{/* {console.log(todos)} */}
+      {todos.map((e) => {
+        return (
+          <p key={e.id}>
+            {e.item}{" "}
+            <button onClick={() => dispatch(removeTodo(e.id))}>DEL</button>
+          </p>
+        );
+      })}
+    </>
+  );
 }
 
-export default Todos
+export default Todos;
