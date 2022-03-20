@@ -18,13 +18,13 @@ export const todosSlice = createSlice( {
         },
         updateTodo: ( state, action ) =>
         {
-            state =  state.todos.map( ( e ) =>
+            state.todos =  state.todos.map( ( e ) =>
             {
-                if ( e.id === action.payload.id )
+                if ( e.id === action.payload.obj.id )
                 {
                     return {
                         ...e,
-                        item: action.payload.item,
+                        item: action.payload.obj.item,
                     };
                 }
                 return e;
