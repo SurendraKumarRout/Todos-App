@@ -15,7 +15,7 @@ function App ()
         initial={{ y: -200 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.2 }}
       >
         Aarya's Todo App
       </motion.h1>
