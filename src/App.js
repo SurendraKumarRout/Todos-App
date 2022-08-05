@@ -17,7 +17,7 @@ function App ()
         transition={{ type: "spring", duration: 0.5 }}
         whileHover={{ scale: 1.2 }}
       >
-        Simple Todo App
+        New Todo App
       </motion.h1>
       <motion.div
         initial={{ y: 1000 }}
